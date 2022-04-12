@@ -127,7 +127,7 @@ namespace AClicker
         private void UpdateValues()
         {
             CpsMaxInput.Minimum = CpsMinInput.Value;
-            TriggerButton.Text = $"{Enum.GetName(typeof(VirtualKeyCode), TriggerCode)} ({(int)TriggerCode})";
+            TriggerLink.Text = $"{Enum.GetName(typeof(VirtualKeyCode), TriggerCode)} ({(int)TriggerCode})";
             TargetCpsLabel.Text = "Hedef CPS: " + TargetCPS * (int)MultiplierInput.Value;
             cpsChangeTimer.Interval = (int)ChangeIntervalInput.Value;
         }
@@ -188,15 +188,15 @@ namespace AClicker
             ShouldClick = false;
         }
 
-        private void TriggerButton_MouseClick(object sender, MouseEventArgs e)
-        {
-            ShouldClick = false;
-            IsWaitingForTriggerChange = true;
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/TheArmagan");
+        }
+
+        private void TriggerLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ShouldClick = false;
+            IsWaitingForTriggerChange = true;
         }
     }
 

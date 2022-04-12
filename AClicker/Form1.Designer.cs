@@ -38,7 +38,6 @@ namespace AClicker
             this.label4 = new System.Windows.Forms.Label();
             this.CpsMaxInput = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.TriggerButton = new System.Windows.Forms.Button();
             this.TargetCpsLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.ButtonComboBox = new System.Windows.Forms.ComboBox();
@@ -46,6 +45,7 @@ namespace AClicker
             this.MultiplierInput = new System.Windows.Forms.NumericUpDown();
             this.stopButton = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.TriggerLink = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CpsMinInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CpsMaxInput)).BeginInit();
@@ -166,18 +166,6 @@ namespace AClicker
             this.label5.TabIndex = 10;
             this.label5.Text = "A:";
             // 
-            // TriggerButton
-            // 
-            this.TriggerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.TriggerButton.ForeColor = System.Drawing.Color.Black;
-            this.TriggerButton.Location = new System.Drawing.Point(34, 115);
-            this.TriggerButton.Name = "TriggerButton";
-            this.TriggerButton.Size = new System.Drawing.Size(96, 32);
-            this.TriggerButton.TabIndex = 11;
-            this.TriggerButton.Text = "Return (13)";
-            this.TriggerButton.UseVisualStyleBackColor = true;
-            this.TriggerButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TriggerButton_MouseClick);
-            // 
             // TargetCpsLabel
             // 
             this.TargetCpsLabel.AutoSize = true;
@@ -266,11 +254,24 @@ namespace AClicker
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // TriggerLink
+            // 
+            this.TriggerLink.AutoSize = true;
+            this.TriggerLink.LinkColor = System.Drawing.Color.Aqua;
+            this.TriggerLink.Location = new System.Drawing.Point(34, 122);
+            this.TriggerLink.Name = "TriggerLink";
+            this.TriggerLink.Size = new System.Drawing.Size(82, 18);
+            this.TriggerLink.TabIndex = 21;
+            this.TriggerLink.TabStop = true;
+            this.TriggerLink.Text = "Return (13)";
+            this.TriggerLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TriggerLink_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(373, 314);
+            this.Controls.Add(this.TriggerLink);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.label7);
@@ -278,7 +279,6 @@ namespace AClicker
             this.Controls.Add(this.ButtonComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.TargetCpsLabel);
-            this.Controls.Add(this.TriggerButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.CpsMaxInput);
@@ -312,7 +312,6 @@ namespace AClicker
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown CpsMaxInput;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button TriggerButton;
         private System.Windows.Forms.Label TargetCpsLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox ButtonComboBox;
@@ -320,6 +319,7 @@ namespace AClicker
         private System.Windows.Forms.NumericUpDown MultiplierInput;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel TriggerLink;
     }
 }
 
