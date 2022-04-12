@@ -1,0 +1,14 @@
+C:\Users\Armagan\source\repos\AClicker\AClicker\bin\Debug\AClicker.exe.config
+C:\Users\Armagan\source\repos\AClicker\AClicker\bin\Debug\AClicker.exe
+C:\Users\Armagan\source\repos\AClicker\AClicker\bin\Debug\AClicker.pdb
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.csproj.AssemblyReference.cache
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.MainForm.resources
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.Properties.Resources.resources
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.csproj.GenerateResource.cache
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.csproj.CoreCompileInputs.cache
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.exe
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.pdb
+C:\Users\Armagan\source\repos\AClicker\AClicker\bin\Debug\LowLevelInput.xml
+C:\Users\Armagan\source\repos\AClicker\AClicker\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.csproj.Fody.CopyLocal.cache
+C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Debug\AClicker.csproj.CopyComplete
