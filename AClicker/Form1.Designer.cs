@@ -31,7 +31,7 @@ namespace AClicker
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.ChangeIntervalInput = new System.Windows.Forms.NumericUpDown();
+            this.ChangeIntervalMinInput = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.CpsMinInput = new System.Windows.Forms.NumericUpDown();
@@ -46,10 +46,13 @@ namespace AClicker
             this.stopButton = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.TriggerLink = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalInput)).BeginInit();
+            this.ChangeIntervalMaxInput = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalMinInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CpsMinInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CpsMaxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MultiplierInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalMaxInput)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -61,28 +64,28 @@ namespace AClicker
             this.label1.TabIndex = 0;
             this.label1.Text = resources.GetString("label1.Text");
             // 
-            // ChangeIntervalInput
+            // ChangeIntervalMinInput
             // 
-            this.ChangeIntervalInput.Location = new System.Drawing.Point(35, 153);
-            this.ChangeIntervalInput.Maximum = new decimal(new int[] {
+            this.ChangeIntervalMinInput.Location = new System.Drawing.Point(35, 153);
+            this.ChangeIntervalMinInput.Maximum = new decimal(new int[] {
             120000,
             0,
             0,
             0});
-            this.ChangeIntervalInput.Minimum = new decimal(new int[] {
+            this.ChangeIntervalMinInput.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.ChangeIntervalInput.Name = "ChangeIntervalInput";
-            this.ChangeIntervalInput.Size = new System.Drawing.Size(95, 24);
-            this.ChangeIntervalInput.TabIndex = 3;
-            this.ChangeIntervalInput.Value = new decimal(new int[] {
-            1000,
+            this.ChangeIntervalMinInput.Name = "ChangeIntervalMinInput";
+            this.ChangeIntervalMinInput.Size = new System.Drawing.Size(95, 24);
+            this.ChangeIntervalMinInput.TabIndex = 3;
+            this.ChangeIntervalMinInput.Value = new decimal(new int[] {
+            100,
             0,
             0,
             0});
-            this.ChangeIntervalInput.ValueChanged += new System.EventHandler(this.ChangeIntervalInput_ValueChanged);
+            this.ChangeIntervalMinInput.ValueChanged += new System.EventHandler(this.ChangeIntervalMinInput_ValueChanged);
             // 
             // label2
             // 
@@ -169,7 +172,7 @@ namespace AClicker
             // TargetCpsLabel
             // 
             this.TargetCpsLabel.AutoSize = true;
-            this.TargetCpsLabel.Location = new System.Drawing.Point(136, 159);
+            this.TargetCpsLabel.Location = new System.Drawing.Point(136, 276);
             this.TargetCpsLabel.Name = "TargetCpsLabel";
             this.TargetCpsLabel.Size = new System.Drawing.Size(98, 18);
             this.TargetCpsLabel.TabIndex = 12;
@@ -266,11 +269,45 @@ namespace AClicker
             this.TriggerLink.Text = "Return (13)";
             this.TriggerLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TriggerLink_LinkClicked);
             // 
+            // ChangeIntervalMaxInput
+            // 
+            this.ChangeIntervalMaxInput.Location = new System.Drawing.Point(155, 153);
+            this.ChangeIntervalMaxInput.Maximum = new decimal(new int[] {
+            120000,
+            0,
+            0,
+            0});
+            this.ChangeIntervalMaxInput.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ChangeIntervalMaxInput.Name = "ChangeIntervalMaxInput";
+            this.ChangeIntervalMaxInput.Size = new System.Drawing.Size(95, 24);
+            this.ChangeIntervalMaxInput.TabIndex = 22;
+            this.ChangeIntervalMaxInput.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.ChangeIntervalMaxInput.ValueChanged += new System.EventHandler(this.ChangeIntervalMaxInput_ValueChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(136, 155);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 18);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "-";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(373, 314);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.ChangeIntervalMaxInput);
             this.Controls.Add(this.TriggerLink);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.stopButton);
@@ -285,7 +322,7 @@ namespace AClicker
             this.Controls.Add(this.label3);
             this.Controls.Add(this.CpsMinInput);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.ChangeIntervalInput);
+            this.Controls.Add(this.ChangeIntervalMinInput);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.ForeColor = System.Drawing.Color.White;
@@ -293,10 +330,12 @@ namespace AClicker
             this.Name = "MainForm";
             this.Text = "AClicker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalInput)).EndInit();
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalMinInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CpsMinInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CpsMaxInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MultiplierInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalMaxInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,7 +344,7 @@ namespace AClicker
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown ChangeIntervalInput;
+        private System.Windows.Forms.NumericUpDown ChangeIntervalMinInput;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown CpsMinInput;
@@ -320,6 +359,8 @@ namespace AClicker
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel TriggerLink;
+        private System.Windows.Forms.NumericUpDown ChangeIntervalMaxInput;
+        private System.Windows.Forms.Label label8;
     }
 }
 

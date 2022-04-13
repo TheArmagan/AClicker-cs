@@ -37,10 +37,10 @@ namespace AClicker
         public static int _CPS = 1;
         public static MouseEventFlags buttonDown = MouseEventFlags.LEFTDOWN;
         public static MouseEventFlags buttonUp = MouseEventFlags.LEFTUP;
-        public static Timer cpsChangeTimer = new Timer();
         public static Random rnd = new Random();
         public static InputManager inputManager = new InputManager(false);
-        public static IInterruptable lastTimeout = null;
+        public static IInterruptable lastClickTimeout = null;
+        public static IInterruptable lastCpsChangeTimeout = null;
         public MainForm()
         {
             InitializeComponent();
@@ -48,19 +48,14 @@ namespace AClicker
             inputManager.OnKeyboardEvent += InputManager_OnKeyboardEvent;
             inputManager.OnMouseEvent += InputManager_OnMouseEvent;
 
-            cpsChangeTimer.Tick += CpsChangeTimer_Tick;
-
-          
-            cpsChangeTimer.Start();
-            ClickLoop();
-            UpdateValues();
+            
         }
 
         private void ClickLoop()
         {
             if (!ShouldClick)
             {
-                lastTimeout = TimerHelper.SetTimeout(1, ClickLoop);
+                lastClickTimeout = TimerHelper.SetTimeout(1, ClickLoop);
                 return;
             }
             new Task(() =>
@@ -72,13 +67,15 @@ namespace AClicker
                 }
             }).Start();
 
-            lastTimeout = TimerHelper.SetTimeout(1000 / TargetCPS, ClickLoop);
+            lastClickTimeout = TimerHelper.SetTimeout(1000 / TargetCPS, ClickLoop);
         }
 
-        private void CpsChangeTimer_Tick(object sender, EventArgs e)
+        private void ChangeCpsLoop()
         {
             TargetCPS = rnd.Next((int)CpsMinInput.Value, (int)CpsMaxInput.Value);
-            UpdateValues();
+            Invoke(new Action(() => { UpdateValues(); }));
+
+            lastCpsChangeTimeout = TimerHelper.SetTimeout(rnd.Next((int)ChangeIntervalMinInput.Value, (int)ChangeIntervalMaxInput.Value), ChangeCpsLoop);
         }
 
         private void InputManager_OnKeyboardEvent(VirtualKeyCode key, KeyState state)
@@ -127,19 +124,14 @@ namespace AClicker
         private void UpdateValues()
         {
             CpsMaxInput.Minimum = CpsMinInput.Value;
+            ChangeIntervalMaxInput.Minimum = ChangeIntervalMinInput.Value;
             TriggerLink.Text = $"{Enum.GetName(typeof(VirtualKeyCode), TriggerCode)} ({(int)TriggerCode})";
             TargetCpsLabel.Text = "Hedef CPS: " + TargetCPS * (int)MultiplierInput.Value;
-            cpsChangeTimer.Interval = (int)ChangeIntervalInput.Value;
-        }
-
-        private void ChangeIntervalInput_ValueChanged(object sender, EventArgs e)
-        {
-            UpdateValues();
         }
 
         private void CpsMinInput_ValueChanged(object sender, EventArgs e)
         {
-            lastTimeout?.Stop();
+            lastClickTimeout?.Stop();
             ClickLoop();
 
             UpdateValues();
@@ -147,7 +139,7 @@ namespace AClicker
 
         private void CpsMaxInput_ValueChanged(object sender, EventArgs e)
         {
-            lastTimeout?.Stop();
+            lastClickTimeout?.Stop();
             ClickLoop();
 
             UpdateValues();
@@ -197,6 +189,29 @@ namespace AClicker
         {
             ShouldClick = false;
             IsWaitingForTriggerChange = true;
+        }
+
+        private void ChangeIntervalMinInput_ValueChanged(object sender, EventArgs e)
+        {
+            lastCpsChangeTimeout?.Stop();
+            ChangeCpsLoop();
+
+            UpdateValues();
+        }
+
+        private void ChangeIntervalMaxInput_ValueChanged(object sender, EventArgs e)
+        {
+            lastCpsChangeTimeout?.Stop();
+            ChangeCpsLoop();
+
+            UpdateValues();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ClickLoop();
+            ChangeCpsLoop();
+            UpdateValues();
         }
     }
 
