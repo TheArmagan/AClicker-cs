@@ -48,11 +48,18 @@ namespace AClicker
             this.TriggerLink = new System.Windows.Forms.LinkLabel();
             this.ChangeIntervalMaxInput = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.CursorMinShake = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.CursorMaxShake = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalMinInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CpsMinInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CpsMaxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MultiplierInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalMaxInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CursorMinShake)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CursorMaxShake)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -236,9 +243,9 @@ namespace AClicker
             // stopButton
             // 
             this.stopButton.ForeColor = System.Drawing.Color.Black;
-            this.stopButton.Location = new System.Drawing.Point(268, 115);
+            this.stopButton.Location = new System.Drawing.Point(268, 122);
             this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(93, 183);
+            this.stopButton.Size = new System.Drawing.Size(93, 206);
             this.stopButton.TabIndex = 19;
             this.stopButton.Text = "Durdur!";
             this.stopButton.UseVisualStyleBackColor = true;
@@ -248,7 +255,7 @@ namespace AClicker
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.Aqua;
-            this.linkLabel1.Location = new System.Drawing.Point(268, 96);
+            this.linkLabel1.Location = new System.Drawing.Point(317, 340);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(51, 18);
             this.linkLabel1.TabIndex = 20;
@@ -301,11 +308,79 @@ namespace AClicker
             this.label8.TabIndex = 23;
             this.label8.Text = "-";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 306);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(22, 18);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "S:";
+            // 
+            // CursorMinShake
+            // 
+            this.CursorMinShake.Location = new System.Drawing.Point(35, 304);
+            this.CursorMinShake.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.CursorMinShake.Name = "CursorMinShake";
+            this.CursorMinShake.Size = new System.Drawing.Size(95, 24);
+            this.CursorMinShake.TabIndex = 24;
+            this.CursorMinShake.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.CursorMinShake.ValueChanged += new System.EventHandler(this.cursorMinShake_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(12, 340);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(283, 18);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Fareyi -S ve +S genişliğinde rastgele salla.";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(136, 306);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(13, 18);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "-";
+            // 
+            // CursorMaxShake
+            // 
+            this.CursorMaxShake.Location = new System.Drawing.Point(155, 304);
+            this.CursorMaxShake.Maximum = new decimal(new int[] {
+            120000,
+            0,
+            0,
+            0});
+            this.CursorMaxShake.Name = "CursorMaxShake";
+            this.CursorMaxShake.Size = new System.Drawing.Size(95, 24);
+            this.CursorMaxShake.TabIndex = 27;
+            this.CursorMaxShake.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.CursorMaxShake.ValueChanged += new System.EventHandler(this.cursorMaxShake_ValueChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(373, 314);
+            this.ClientSize = new System.Drawing.Size(373, 367);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.CursorMaxShake);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.CursorMinShake);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.ChangeIntervalMaxInput);
             this.Controls.Add(this.TriggerLink);
@@ -336,6 +411,8 @@ namespace AClicker
             ((System.ComponentModel.ISupportInitialize)(this.CpsMaxInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MultiplierInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChangeIntervalMaxInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CursorMinShake)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CursorMaxShake)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,6 +438,11 @@ namespace AClicker
         private System.Windows.Forms.LinkLabel TriggerLink;
         private System.Windows.Forms.NumericUpDown ChangeIntervalMaxInput;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown CursorMinShake;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown CursorMaxShake;
     }
 }
 
