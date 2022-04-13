@@ -1,4 +1,4 @@
 # AClicker-cs
-tıklayıcı c#
+Çok seçenekli `user32.dll` seviye tıklayıcı.
 
-![resim](https://media.discordapp.net/attachments/948228636023095326/963484901561229382/unknown.png)
+![resim](https://i.imgur.com/zajsank.png)
