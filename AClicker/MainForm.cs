@@ -86,9 +86,12 @@ namespace AClicker
         private void ChangeCpsLoop()
         {
             TargetCPS = rnd.Next((int)CpsMinInput.Value, (int)CpsMaxInput.Value);
-            Invoke(new Action(() => {
-                UpdateValues();
-            }));
+            try
+            {
+                Invoke(new Action(() => {
+                    UpdateValues();
+                }));
+            } catch { };
 
             lastCpsChangeTimeout = TimerHelper.SetTimeout(rnd.Next((int)ChangeIntervalMinInput.Value, (int)ChangeIntervalMaxInput.Value), ChangeCpsLoop);
         }
@@ -124,8 +127,17 @@ namespace AClicker
                 cursorY = y;
             }
 
+            
+
             if (key != VirtualKeyCode.Invalid && IsWaitingForTriggerChange)
             {
+                if (key == VirtualKeyCode.Lbutton)
+                {
+                    ShouldClick = false;
+                    IsWaitingForTriggerChange = false;
+                    return;
+                }
+
                 TriggerCode = key;
                 ShouldClick = false;
                 IsWaitingForTriggerChange = false;
@@ -157,7 +169,7 @@ namespace AClicker
             CpsMaxInput.Minimum = CpsMinInput.Value;
             ChangeIntervalMaxInput.Minimum = ChangeIntervalMinInput.Value;
             CursorMaxShake.Minimum = CursorMinShake.Value;
-            TriggerLink.Text = $"{Enum.GetName(typeof(VirtualKeyCode), TriggerCode)} ({(int)TriggerCode})";
+            TriggerButton.Text = $"{Enum.GetName(typeof(VirtualKeyCode), TriggerCode)} ({(int)TriggerCode})";
             TargetCpsLabel.Text = "Hedef CPS: " + TargetCPS * (int)MultiplierInput.Value;
         }
 
@@ -217,12 +229,6 @@ namespace AClicker
             Process.Start("https://github.com/TheArmagan");
         }
 
-        private void TriggerLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ShouldClick = false;
-            IsWaitingForTriggerChange = true;
-        }
-
         private void ChangeIntervalMinInput_ValueChanged(object sender, EventArgs e)
         {
             lastCpsChangeTimeout?.Stop();
@@ -260,6 +266,28 @@ namespace AClicker
             ClickLoop();
 
             UpdateValues();
+        }
+
+        private void TriggerButton_Click(object sender, EventArgs e)
+        {
+            ShouldClick = false;
+            IsWaitingForTriggerChange = true;
+            TriggerButton.Enabled = false;
+            TimerHelper.SetTimeout(500, new Action(() =>
+            {
+                Invoke(new Action(() =>
+                {
+                    TriggerButton.Enabled = true;
+                }));
+            }));
+        }
+
+        private void ButtonComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!(ButtonComboBox.Text == "Sol" || ButtonComboBox.Text == "Sağ" || ButtonComboBox.Text == "Orta"))
+            {
+                ButtonComboBox.Text = "Sol";
+            }
         }
     }
 

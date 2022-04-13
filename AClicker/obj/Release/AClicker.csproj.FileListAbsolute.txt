@@ -11,4 +11,3 @@ C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Release\AClicker.csproj.Fody
 C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Release\AClicker.csproj.CopyComplete
 C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Release\AClicker.exe
 C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Release\AClicker.pdb
-C:\Users\Armagan\source\repos\AClicker\AClicker\obj\Release\AClicker.csproj.AssemblyReference.cache
